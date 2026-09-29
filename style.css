@@ -1,0 +1,177 @@
+/*
+  Paleta: tonos de tormenta (azul noche) con un acento de lluvia
+  y un acento ámbar reservado para avisos de lluvia fuerte.
+*/
+:root {
+  --fondo: #0f1620;
+  --superficie: #161f2e;
+  --superficie-alta: #1d283b;
+  --borde: #263349;
+  --texto: #e8eef5;
+  --texto-tenue: #8a99ac;
+  --lluvia: #5fa8d3;
+  --lluvia-suave: rgba(95, 168, 211, 0.18);
+  --aviso: #e8b34a;
+  --exito: #56c98d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(120% 100% at 50% -10%, #17243a 0%, var(--fondo) 55%);
+  color: var(--texto);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.tablero {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---------- ENCABEZADO ---------- */
+.encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+}
+
+.encabezado__marca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+.encabezado__gota {
+  width: 10px;
+  height: 10px;
+  background: var(--lluvia);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.encabezado__estado {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--texto-tenue);
+}
+
+.punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--texto-tenue);
+}
+.punto--conectado { background: var(--exito); }
+.punto--espera { background: var(--aviso); animation: pulso 1.4s infinite; }
+.punto--error { background: #e0684f; }
+
+@keyframes pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ---------- HERO: número grande ---------- */
+.hero {
+  background: linear-gradient(160deg, var(--superficie-alta), var(--superficie) 70%);
+  border: 1px solid var(--borde);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.hero__etiqueta {
+  margin: 0 0 6px;
+  color: var(--texto-tenue);
+  font-size: 13px;
+  text-transform: lowercase;
+}
+
+.hero__numero {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--lluvia);
+}
+
+.hero__unidad {
+  font-size: 22px;
+  margin-left: 6px;
+  color: var(--texto-tenue);
+  font-weight: 500;
+}
+
+.hero__ultima {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--texto-tenue);
+}
+
+/* ---------- PANELES (gráfica y registro) ---------- */
+.panel {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  padding: 20px;
+}
+
+.panel__titulo {
+  margin: 0 0 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.panel__nota {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--texto-tenue);
+}
+
+.grafica {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- REGISTRO ---------- */
+.registro {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.registro li {
+  padding: 10px 0 10px 14px;
+  border-left: 2px solid var(--borde);
+  font-size: 13px;
+  color: var(--texto-tenue);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.registro li.registro__nuevo {
+  border-left-color: var(--lluvia);
+  color: var(--texto);
+}
+
+.registro__vacio {
+  border-left-color: var(--borde) !important;
+  color: var(--texto-tenue) !important;
+  justify-content: flex-start !important;
+}

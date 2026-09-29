@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estación de lluvia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="tablero">
+
+    <!-- ENCABEZADO: estado de conexión -->
+    <header class="encabezado">
+      <div class="encabezado__marca">
+        <span class="encabezado__gota" aria-hidden="true"></span>
+        <span>Estación de lluvia</span>
+      </div>
+      <div class="encabezado__estado" id="indicadorEstado">
+        <span class="punto punto--espera" id="puntoEstado"></span>
+        <span id="textoEstado">Conectando...</span>
+      </div>
+    </header>
+
+    <!-- ZONA PRINCIPAL: el número grande de lluvia acumulada -->
+    <section class="hero">
+      <p class="hero__etiqueta">Acumulado de hoy</p>
+      <p class="hero__numero"><span id="mmAcumulado">0.0</span><span class="hero__unidad">mm</span></p>
+      <p class="hero__ultima" id="ultimaActualizacion">Esperando datos del pluviómetro...</p>
+    </section>
+
+    <!-- GRÁFICA: historial reciente -->
+    <section class="panel">
+      <h2 class="panel__titulo">Últimas lecturas</h2>
+      <canvas id="grafica" class="grafica" height="160"></canvas>
+      <p class="panel__nota">Cada barra es un intervalo de medición (mm de lluvia caída en ese tramo)</p>
+    </section>
+
+    <!-- REGISTRO: lista de eventos -->
+    <section class="panel">
+      <h2 class="panel__titulo">Registro</h2>
+      <ul class="registro" id="listaRegistro">
+        <li class="registro__vacio">Todavía no hay lecturas registradas</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
